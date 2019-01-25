@@ -67,36 +67,75 @@ typedef pair<int, ll> pill;
 
 
 
-int main() {
+int main()
+{
     CIN
     //freopen("input.txt", "r", stdin);
     //freopen("output.txt", "w", stdout);
-
     int n;
     cin>>n;
 
     string s;
     cin>>s;
 
+
     int cnt=0;
-    for(int i=0 ; i+1<n ; i++){
-        if(s[i]==s[i+1]){
-            if('R'!=s[i+2] && 'R'!=s[i+1]){
+    for(int i=0 ; i+2<n ; i++)
+    {
+
+        if(s[i]==s[i+1])
+        {
+            if(s[i]=='R' && s[i+2]=='R' )
+            {
+                s[i+1]='B';
+                //i++;
+            }
+            else if(s[i]=='B' && s[i+2]=='B')
+            {
+                s[i+1]='R';
+                //i++;
+            }
+            else if(s[i]=='G' && s[i+2]=='G')
+            {
+                s[i+1]='R';
+                //i++;
+            }
+            else if((s[i]=='R' && s[i+2]=='B') || (s[i]=='B' && s[i+2]=='R'))
+            {
+                s[i+1]='G';
+            }
+            else if((s[i]=='G' && s[i+2]=='B') || (s[i]=='B' && s[i+2]=='G'))
+            {
                 s[i+1]='R';
             }
-            else if('B'!=s[i+2] && 'B'!=s[i+1]){
+            else if((s[i]=='G' && s[i+2]=='R') || (s[i]=='R' && s[i+2]=='G'))
+            {
                 s[i+1]='B';
-            }
-            else if('G'!=s[i+2] && 'G'!=s[i+1]){
-                s[i+1]='G';
             }
             i++;
             cnt++;
         }
+
     }
-    cout<<cnt<<endl;
-    cout<<s<<endl;
+    if(s[n-1]==s[n-2])
+    {
+        if(s[n-2]=='R')
+        {
+            s[n-1]='B';
+        }
+        else if(s[n-2]=='G')
+        {
+            s[n-1]='B';
+        }
+        else if(s[n-2]=='B')
+        {
+            s[n-1]='G';
+        }
+        cnt++;
+    }
+        cout<<cnt<<endl;
+        cout<<s<<endl;
 
-    return 0;
-}
 
+        return 0;
+    }
